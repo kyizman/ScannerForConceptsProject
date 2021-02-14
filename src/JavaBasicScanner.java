@@ -8,6 +8,9 @@ import java.io.LineNumberReader;
 
 public class JavaBasicScanner {
 
+
+
+
     //scanner initialization
     private Scanner bscan;
 
@@ -48,6 +51,87 @@ public class JavaBasicScanner {
         HashMap<Character, String> convert;
         convert = new HashMap<>();
 
+        convert.put('a',"Letter");
+        convert.put('A',"Letter");
+        convert.put('b',"Letter");
+        convert.put('B',"Letter");
+        convert.put('c',"Letter");
+        convert.put('C',"Letter");
+        convert.put('d',"Letter");
+        convert.put('D',"Letter");
+        convert.put('e',"Letter");
+        convert.put('E',"Letter");
+        convert.put('f',"Letter");
+        convert.put('F',"Letter");
+        convert.put('i',"Letter");
+        convert.put('I',"Letter");
+        convert.put('j',"Letter");
+        convert.put('J',"Letter");
+        convert.put('k',"Letter");
+        convert.put('K',"Letter");
+        convert.put('l',"Letter");
+        convert.put('L',"Letter");
+        convert.put('m',"Letter");
+        convert.put('M',"Letter");
+        convert.put('n',"Letter");
+        convert.put('N',"Letter");
+        convert.put('o',"Letter");
+        convert.put('O',"Letter");
+        convert.put('p',"Letter");
+        convert.put('P',"Letter");
+        convert.put('q',"Letter");
+        convert.put('Q',"Letter");
+        convert.put('r',"Letter");
+        convert.put('R',"Letter");
+        convert.put('s',"Letter");
+        convert.put('S',"Letter");
+        convert.put('t',"Letter");
+        convert.put('T',"Letter");
+        convert.put('u',"Letter");
+        convert.put('U',"Letter");
+        convert.put('r',"Letter");
+        convert.put('R',"Letter");
+        convert.put('s',"Letter");
+        convert.put('S',"Letter");
+        convert.put('t',"Letter");
+        convert.put('T',"Letter");
+        convert.put('u',"Letter");
+        convert.put('U',"Letter");
+        convert.put('v',"Letter");
+        convert.put('V',"Letter");
+        convert.put('w',"Letter");
+        convert.put('W',"Letter");
+        convert.put('x',"Letter");
+        convert.put('X',"Letter");
+        convert.put('y',"Letter");
+        convert.put('Y',"Letter");
+        convert.put('z',"Letter");
+        convert.put('Z',"Letter");
+
+
+
+        convert.put('(',"Operator");
+        convert.put(')',"Operator");
+        convert.put('+',"Operator");
+        convert.put('-',"Operator");
+        convert.put('*',"Operator");
+        convert.put('%',"Operator");
+        convert.put('/',"Operator");
+        convert.put('=',"Operator");
+        convert.put('<',"Operator");
+        convert.put('>',"Operator");
+
+
+        convert.put('0',"Integer");
+        convert.put('1',"Integer");
+        convert.put('2',"Integer");
+        convert.put('3',"Integer");
+        convert.put('4',"Integer");
+        convert.put('5',"Integer");
+        convert.put('6',"Integer");
+        convert.put('7',"Integer");
+        convert.put('8',"Integer");
+        convert.put('9',"Integer");
         /* ADD LETTERS, SYMBOLS, INTEGERS, OPERATORS FOR BASIC. */
 
         basicToken = convert.get(c);
