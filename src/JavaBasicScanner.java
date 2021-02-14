@@ -63,6 +63,10 @@ public class JavaBasicScanner {
         convert.put('E',"Letter");
         convert.put('f',"Letter");
         convert.put('F',"Letter");
+        convert.put('G',"Letter");
+        convert.put('g',"Letter");
+        convert.put('H',"Letter");
+        convert.put('h',"Letter");
         convert.put('i',"Letter");
         convert.put('I',"Letter");
         convert.put('j',"Letter");
@@ -107,6 +111,7 @@ public class JavaBasicScanner {
         convert.put('Y',"Letter");
         convert.put('z',"Letter");
         convert.put('Z',"Letter");
+
 
 
 
@@ -196,7 +201,8 @@ public class JavaBasicScanner {
             while (!fileItems.empty())
                 fileItems.pop();
             return basicScannedContent;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("File Error: " + e.getMessage());
 
             return basicScannedContent;
