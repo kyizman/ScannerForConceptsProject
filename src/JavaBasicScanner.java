@@ -157,6 +157,7 @@ public class JavaBasicScanner {
         convert.put('|',"Symbols");
         convert.put('\'',"Symbols");
         convert.put('?',"Symbols");
+        convert.put(' ', "NULL");
 
         /* ADD LETTERS, SYMBOLS, INTEGERS, OPERATORS FOR BASIC. */
 
