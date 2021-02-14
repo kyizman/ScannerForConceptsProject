@@ -120,7 +120,7 @@ public class JavaBasicScanner {
         convert.put('=',"Operator");
         convert.put('<',"Operator");
         convert.put('>',"Operator");
-
+        convert.put('^',"Operator");
 
         convert.put('0',"Integer");
         convert.put('1',"Integer");
@@ -132,6 +132,27 @@ public class JavaBasicScanner {
         convert.put('7',"Integer");
         convert.put('8',"Integer");
         convert.put('9',"Integer");
+
+        convert.put('!',"Symbols");
+        convert.put('@',"Symbols");
+        convert.put('#',"Symbols");
+        convert.put('$',"Symbols");
+        convert.put(',',"Symbols");
+        convert.put('.',"Symbols");
+        convert.put(';',"Symbols");
+        convert.put(':',"Symbols");
+        convert.put('"',"Symbols");
+        convert.put('&',"Symbols");
+        convert.put('_',"Symbols");
+        convert.put('-',"Symbols");
+        convert.put('}',"Symbols");
+        convert.put('{',"Symbols");
+        convert.put(']',"Symbols");
+        convert.put('[',"Symbols");
+        convert.put('|',"Symbols");
+        convert.put('\'',"Symbols");
+        convert.put('?',"Symbols");
+
         /* ADD LETTERS, SYMBOLS, INTEGERS, OPERATORS FOR BASIC. */
 
         basicToken = convert.get(c);
