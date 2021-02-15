@@ -111,8 +111,6 @@ public class JavaBasicScanner {
         convert.put('Z',"Letter");
 
 
-
-
         convert.put('(',"Operator");
         convert.put(')',"Operator");
         convert.put('+',"Operator");
