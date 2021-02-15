@@ -1,10 +1,8 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
-import java.util.regex.Pattern;
 import java.io.LineNumberReader;
-import java.io.LineNumberReader;
+
 
 public class JavaBasicScanner {
 
@@ -174,7 +172,6 @@ public class JavaBasicScanner {
         try {
             for (int i = 0; i < basicFileContents.size(); i++) {
                 fileItems.push(basicFileContents.get(i));
-                stackTop = new char[fileItems.peek().toCharArray().length];
                 stackTop = fileItems.peek().toCharArray();
 
                 for (int j = 0; j < stackTop.length; j++) {
