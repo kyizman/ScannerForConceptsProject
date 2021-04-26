@@ -13,7 +13,7 @@ public class JavaBasicScanner {
     //file closing method
     public void fileClose() {
         bscan.close();
-
+        ;
     }
 
     //file reading section

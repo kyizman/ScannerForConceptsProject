@@ -8,11 +8,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         JavaBasicScanner basicScanner = new JavaBasicScanner();
-        JavaBasicInterpreter basicInter= new JavaBasicInterpreter();
 
         JavaBasicParser basicParser = new JavaBasicParser();
 
-        ArrayList<String> basicFile = basicScanner.scannerBasic("C:\\Users\\kyson\\Downloads\\ScannerForConceptsProject\\src\\basicTest.bas");
+        ArrayList<String> basicFile = basicScanner.scannerBasic("C:\\Users\\Admin\\Desktop\\ScannerForConceptsProject\\src\\basicTest.bas");
 
    // int i=0;
        // String[] hold=new String[500];
@@ -35,7 +34,7 @@ public class Main {
       //  }
 
 
-    basicInter.OutputForProject(basicFile);
+
 
         basicParser.syntaxMap(basicFile);
      //   for(int i = 0; i < basicFile.size(); i++){
