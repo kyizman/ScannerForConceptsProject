@@ -9,12 +9,18 @@ public class JavaBasicParser {
     Stack<String> closeParenthesis = new Stack<String>();
 
     public void token(ArrayList<String> tokenArray){
-        if(count + 1 < tokenArray.size() && !tokenArray.get(count + 1).contains("EQUALS")){
+
+        if( !tokenArray.contains("Operator =")){
             System.out.println("\n Be sure to include equals with variable declaration");
+            System.out.println("\n Error at line " + ((count + 1)));
+            System.out.println("\n Token by token breakdown = is improperly declared resulting in error. ");
+            for(int i = 0; i < tokenArray.size(); i++){
+                System.out.println(tokenArray.get(i));
+            }
             proceed = false;
         }
 
-        else if(count + 1 == tokenArray.size()){
+       else  if(count + 1 == tokenArray.size()){
             System.out.println("\n Improper variable declaration");
             proceed = false;
         }
@@ -32,53 +38,66 @@ public class JavaBasicParser {
                 if(!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("EQUALS")){
+            else if(syntaxArray.get(i).contains("=")){
                 token(syntaxArray);
+                operatorToken(syntaxArray,i);
                 if(!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("DIVIDE")){
+            else if(syntaxArray.get(i).contains("Operator /")){
                 token(syntaxArray);
+                operatorToken(syntaxArray,i);
                 if(!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("MULTIPLY")) {
+            else if(syntaxArray.get(i).contains("Operator *")) {
                 token(syntaxArray);
+                operatorToken(syntaxArray,i);
                 if (!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("PLUS")) {
+            else if(syntaxArray.get(i).contains("Operator +")) {
                 token(syntaxArray);
+                operatorToken(syntaxArray,i);
+
                 if (!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("DIVIDE")) {
+            else if(syntaxArray.get(i).contains("Operator /")) {
                 token(syntaxArray);
+                operatorToken(syntaxArray,i);
                 if (!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("MINUS")) {
+            else if(syntaxArray.get(i).contains("Operator -")) {
                 token(syntaxArray);
+                operatorToken(syntaxArray,i);
+                minusToken(syntaxArray,i);
                 if (!proceed)
                     break;
             }
             else if(syntaxArray.get(i).contains("INTEGER")) {
                 token(syntaxArray);
+
                 if (!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("RIGHT_PARENTHESIS")) {
+            else if(syntaxArray.get(i).contains("Operator )")) {
                 token(syntaxArray);
+                rightParenthesisToken(syntaxArray);
                 if (!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("LEFT_PARENTHESIS")) {
+            else if(syntaxArray.get(i).contains("Operator (")) {
                 token(syntaxArray);
+                leftParenthesisToken(syntaxArray,i);
                 if (!proceed)
                     break;
             }
-            else if(syntaxArray.get(i).contains("ZERO")) {
+            else if(syntaxArray.get(i).contains("0")) {
                 token(syntaxArray);
+                zeroToken(syntaxArray);
+                operatorToken(syntaxArray,i);
                 if (!proceed)
                     break;
             }
@@ -91,22 +110,24 @@ public class JavaBasicParser {
     }
     //All methods below read through the file and makes sure to apply the proper tokens to each situation
     public void equalToken(ArrayList<String> equalTokenArray){
-        if(count + 1 < equalTokenArray.size() &&! equalTokenArray.get(count + 1).contains("MINUS")&&
+        if(count + 1 < equalTokenArray.size() &&! equalTokenArray.get(count + 1).contains("-")&&
         !equalTokenArray.get(count + 1).contains("INTEGER")&&
                 !equalTokenArray.get(count + 1).contains("LEFT_PARENTHESIS")&&
                 !equalTokenArray.get(count + 1).contains("ZERO")){
             System.out.println("Integer variables must have a minus, int, or left parenthesis when declared.");
             proceed = false;
+            System.out.println("\n Error at line" + (count + 1));
         }
         else if(count + 1 == equalTokenArray.size()){
             System.out.println("Ending declarations with equals is improper.");
             proceed = false;
+            System.out.println("\n Error at line" + (count + 1));
         }
         else {
-            if(count + 1 < equalTokenArray.size() && equalTokenArray.get(count + 1).contains("ZERO")){
+            if(count + 1 < equalTokenArray.size() && equalTokenArray.get(count + 1).contains("0")){
                 zero = true;
             }
-            else if(count + 1 < equalTokenArray.size() && equalTokenArray.get(count + 1).contains("MINUS")){
+            else if(count + 1 < equalTokenArray.size() && equalTokenArray.get(count + 1).contains("-")){
                 neg = true;
                 proceed = true;
                 count++;
@@ -114,13 +135,15 @@ public class JavaBasicParser {
         }
     }
 
-    public void minusToken(ArrayList<String> minusTokenArray){
-        if(count + 1 < minusTokenArray.size() && !minusTokenArray.get(count + 1).contains("INTEGER")
-            && !minusTokenArray.get(count + 1).contains("MINUS")&&
-                !minusTokenArray.get(count + 1).contains("ZERO")&&
-                !minusTokenArray.get(count + 1).contains("LEFT_PARENTHESIS")){
+    public void minusToken(ArrayList<String> minusTokenArray,int i){
+        if(count + 1 < minusTokenArray.size() && !minusTokenArray.get(count + 1).contains("Integer")
+            && !minusTokenArray.get(i+ 1).contains("-")&&
+                !minusTokenArray.get(i + 1).contains("0")&&
+                !minusTokenArray.get(i + 1).contains("(")){
             System.out.println("\n Be sure to have a minus, int, or left parenthesis following");
             proceed = false;
+            System.out.println("\n Error at line" + (count + 1));
+
         }
         else if (count + 1 == minusTokenArray.size()){
             System.out.println("\n Improper declaration");
@@ -132,6 +155,11 @@ public class JavaBasicParser {
                     minusTokenArray.get(count + 1).contains("ZERO"))
             {
                 System.out.println("\n Neg zero is not a number");
+                System.out.println("\n Error at line" + (count + 1));
+                System.out.println("\n Token by token breakdown");
+                for(int j = 0; j < minusTokenArray.size(); j++){
+                    System.out.println(minusTokenArray.get(j));
+                }
                 proceed = false;
             }
 
@@ -142,30 +170,34 @@ public class JavaBasicParser {
             }
         }
     }
-    public void operatorToken(ArrayList<String> operatorTokenArray)
+    public void operatorToken(ArrayList<String> operatorTokenArray ,int i)
     {
-        if(count + 1 < operatorTokenArray.size()&&!operatorTokenArray.get(count + 1).contains("INTEGER") &&
-                !operatorTokenArray.get(count + 1).contains("MINUS") &&
-                !operatorTokenArray.get(count + 1).contains("LEFT_PARENTHESIS")&&
-                !operatorTokenArray.get(count + 1).contains("ZERO"))
+        if(i + 1 < operatorTokenArray.size()&&!operatorTokenArray.get(i + 1).contains("Integer") &&
+                !operatorTokenArray.get(i + 1).contains("-") &&
+                !operatorTokenArray.get(i + 1).contains("(")&&
+                !operatorTokenArray.get(i + 1).contains("0"))
         {
             System.out.println("\nAn operator can only be followed by an "
                     + "integer, a minus sign, or a left parenthesis...");
+            System.out.println("Error at line " + (count + 1));
+
             proceed = false;
         }
 
         else if(count + 1 == operatorTokenArray.size())
         {
             System.out.println("\n Cannot end declaration with operators");
+            System.out.println("\n Error at line" + (count + 1));
             proceed = false;
         }
 
         else
         {
-            if(count + 1 < operatorTokenArray.size()&&operatorTokenArray.get(count).contains("DIVIDE") &&
-                    operatorTokenArray.get(count + 1).contains("ZERO"))
+            if(i + 1 < operatorTokenArray.size()&&operatorTokenArray.get(i).contains("/") &&
+                    operatorTokenArray.get(i + 1).contains("0"))
             {
                 System.out.println("\n You can't divide by zero");
+                System.out.println("\n Error at line" + (count + 1));
                 proceed = false;
             }
             else
@@ -175,20 +207,22 @@ public class JavaBasicParser {
             }
         }
     }
-    public void leftParenthesisToken(ArrayList<String> leftParenthesisTokenArray)
+    public void leftParenthesisToken(ArrayList<String> leftParenthesisTokenArray,int x)
     {
-        if(count + 1 < leftParenthesisTokenArray.size()&&!leftParenthesisTokenArray.get(count + 1).contains("INTEGER") &&
-                !leftParenthesisTokenArray.get(count + 1).contains("ZERO")&&
-                !leftParenthesisTokenArray.get(count + 1).contains("MINUS")&&
-                !leftParenthesisTokenArray.get(count + 1).contains("LEFT_PARENTHESIS"))
+        if(x + 1 < leftParenthesisTokenArray.size()&&!leftParenthesisTokenArray.get(x + 1).contains("Integer") &&
+                !leftParenthesisTokenArray.get(x + 1).contains("0")&&
+                !leftParenthesisTokenArray.get(x + 1).contains("-")&&
+                !leftParenthesisTokenArray.get(x + 1).contains("("))
         {
             System.out.println("\n You can only have a minus or int after left parenthesis");
+            System.out.println("\n Error at line" + (count + 1));
             proceed = false;
         }
 
-        else if(count + 1 == leftParenthesisTokenArray.size())
+        else if(x + 1 == leftParenthesisTokenArray.size())
         {
             System.out.println("\n You can't end declarations with left parenthesis");
+            System.out.println("\n Error at line" + (count + 1));
             proceed = false;
         }
 
@@ -201,14 +235,15 @@ public class JavaBasicParser {
     }
     public void rightParenthesisToken(ArrayList<String> rightParenthesisTokenArray)
     {
-        if(count + 1 < rightParenthesisTokenArray.size()&&!rightParenthesisTokenArray.get(count + 1).contains("PLUS") &&
-                !rightParenthesisTokenArray.get(count + 1).contains("MINUS") &&
-                !rightParenthesisTokenArray.get(count + 1).contains("DIVIDE") &&
-                !rightParenthesisTokenArray.get(count + 1).contains("MULTIPLY")&&
-                !rightParenthesisTokenArray.get(count + 1).contains("RIGHT_PARENTHESIS")&&
+        if(count + 1 < rightParenthesisTokenArray.size()&&!rightParenthesisTokenArray.get(count + 1).contains("+") &&
+                !rightParenthesisTokenArray.get(count + 1).contains("-") &&
+                !rightParenthesisTokenArray.get(count + 1).contains("/") &&
+                !rightParenthesisTokenArray.get(count + 1).contains("*")&&
+                !rightParenthesisTokenArray.get(count + 1).contains(")")&&
                 !rightParenthesisTokenArray.get(count + 1).contains("NEW LINE"))
         {
             System.out.println("\n Right parenthesis are normally added past any operators");
+            System.out.println("\n Error at line" + (count + 1));
             proceed = false;
         }
 
@@ -217,6 +252,7 @@ public class JavaBasicParser {
             if(closeParenthesis.isEmpty())
             {
                 System.out.println("\n You can't have a close parenthesis without an open one.");
+                System.out.println("\n Error at line" + (count + 1));
                 proceed = false;
             }
 
@@ -241,6 +277,7 @@ public class JavaBasicParser {
                 !integerTokenArray.get(count + 1).contains("ZERO"))
         {
             System.out.println("\n Integers can have operators, other ints, parenthesises, or newlines");
+            System.out.println("\n Error at line" + (count + 1));
             proceed = false;
         }
 
@@ -262,6 +299,7 @@ public class JavaBasicParser {
                 !zeroTokenArray.get(count + 1).contains("NEW LINE"))
         {
             System.out.println("\n Zeroes can have ints, operators, right parenthesis, and tokens following");
+            System.out.println("\n Error at line" + (count + 1));
             proceed = false;
         }
 
@@ -271,6 +309,7 @@ public class JavaBasicParser {
                     zeroTokenArray.get(count + 1).contains("INTEGER"))
             {
                 System.out.println("\n Ints cannot have leading zeroes.");
+                System.out.println("\n Error at line" + (count + 1));
                 proceed = false;
             }
 
@@ -287,12 +326,14 @@ public class JavaBasicParser {
         if(count + 1 < newLineTokenArray.size()&&!newLineTokenArray.get(count + 1).contains("VARIABLE"))
         {
             System.out.println("\n Variables must have new lines after");
+            System.out.println("\n Error at line" + (count + 1));
             proceed = false;
         }
 
         else if(count + 1 == newLineTokenArray.size())
         {
             System.out.println("\n Ending variable declarations with new lines is improper.");
+            System.out.println("\n Error at line" + (count + 1));
             proceed = false;
         }
 
