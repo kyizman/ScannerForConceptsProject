@@ -10,6 +10,7 @@ public class Main {
         JavaBasicScanner basicScanner = new JavaBasicScanner();
 
         JavaBasicParser basicParser = new JavaBasicParser();
+        JavaBasicInterpreter basicInterpreter=new JavaBasicInterpreter();
 
         ArrayList<String> basicFile = basicScanner.scannerBasic("C:\\Users\\Admin\\Desktop\\ScannerForConceptsProject\\src\\basicTest.bas");
 
@@ -39,6 +40,8 @@ public class Main {
         basicParser.syntaxMap(basicFile);
      //   for(int i = 0; i < basicFile.size(); i++){
         //    System.out.print(basicFile.get(i));
+
+       basicInterpreter.OutputForProject(basicFile);
 
        // }
 
